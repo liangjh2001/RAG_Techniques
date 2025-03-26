@@ -1,11 +1,13 @@
 from langchain.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
+from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
 from langchain_core.pydantic_v1 import BaseModel, Field
 from langchain import PromptTemplate
 from openai import RateLimitError
 from typing import List
+
 from rank_bm25 import BM25Okapi
 import fitz
 import asyncio
@@ -70,7 +72,8 @@ def encode_pdf(path, chunk_size=1000, chunk_overlap=200):
     cleaned_texts = replace_t_with_space(texts)
 
     # Create embeddings and vector store
-    embeddings = OpenAIEmbeddings()
+    #embeddings = OpenAIEmbeddings()
+    embeddings = HuggingFaceEmbeddings(model_name="/data/liangjh/model_set/bge-large-en-v1.5")
     vectorstore = FAISS.from_documents(cleaned_texts, embeddings)
 
     return vectorstore

@@ -10,6 +10,7 @@ sys.path.append(os.path.abspath(os.path.join(os.getcwd(), '..')))
 from helper_functions import *
 from evaluation.evalute_rag import *
 
+os.environ["OPENAI_API_KEY"] = "sk-f0056ec5f20a4530aaac8310625df0fb"
 # Load environment variables from a .env file (e.g., OpenAI API key)
 load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv('OPENAI_API_KEY')

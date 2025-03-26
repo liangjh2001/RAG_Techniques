@@ -105,7 +105,8 @@ def evaluate_rag(retriever, num_questions: int = 5) -> Dict[str, Any]:
     """
     
     # Initialize LLM
-    llm = ChatOpenAI(temperature=0, model_name="gpt-4-turbo-preview")
+    # llm = ChatOpenAI(temperature=0, model_name="gpt-4-turbo-preview")
+    llm = ChatOpenAI(model="deepseek-chat",temperature=0) # use deepseek-chat model
     
     # Create evaluation prompt
     eval_prompt = PromptTemplate.from_template("""
